@@ -1,0 +1,9 @@
+-- CREATE TABLE items(
+--   id int not NULL,
+--   name VARCHAR(255) not NULL,
+--   cost int not NULL,
+--   description VARCHAR(255),
+--   isSold TINYINT DEFAULT 0
+-- );
+-- INSERT INTO items (id, name, cost)
+-- VALUE (1, "Mandela", 10);
