@@ -1,17 +1,17 @@
 namespace amazen_server.Models
 {
-  public class Blog
+  public class Item
   {
-    public string Title { get; set; }
-    public bool IsPublished { get; set; }
-    public string Body { get; set; }
+    public string Name { get; set; }
+    public bool IsSold { get; set; }
+    public string Cost { get; set; }
     public int Id { get; set; }
     public string CreatorId { get; set; }
     public Profile Creator { get; set; }
   }
 
-  public class CompanyBlogViewModel : Blog
+  public class CompanyItemViewModel : Item
   {
-    public int CompanyBlogId { get; set; }
+    public int CompanyItemId { get; set; }
   }
 }
