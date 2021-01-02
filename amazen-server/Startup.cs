@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using amazen_server.Repositories;
+using amazen_server.Services;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -62,7 +64,10 @@ namespace amazen_server
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "amazen-server", Version = "v1" });
       });
-
+      // services.AddTransient<KeepRepository>();
+      // services.AddTransient<KeepService>();
+      services.AddTransient<VaultService>();
+      services.AddTransient<VaultRepository>();
       // REVIEW Do you want to do something here?
 
     }
