@@ -6,7 +6,7 @@ namespace amazen_server.Models
     public string creatorId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    public int keepSaves { get; set; }
+    public bool isPublic { get; set; }
     public Profile Creator { get; set; }
   }
 

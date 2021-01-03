@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using amazen_server.Models;
 using amazen_server.Services;
@@ -6,47 +5,49 @@ using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace amazen_server.Controllers
+namespace latefall2020_dotnet_bloggr.Controllers
 {
   [ApiController]
-  [Route("api/[controller]")]
-  public class VaultController : ControllerBase
+  [Route("[controller]")]
+  public class ProfileController : ControllerBase
   {
+    private readonly ProfilesService _ps;
     private readonly VaultService _vs;
 
-    public VaultController(VaultService vs)
+    public ProfileController(ProfilesService ps, VaultService vs)
     {
+      _ps = ps;
       _vs = vs;
     }
 
-    [HttpPost]
+    [HttpGet]
     [Authorize]
-    public async Task<ActionResult<Vault>> Create([FromBody] Vault newVault)
+    public async Task<ActionResult<Profile>> Get()
     {
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        newVault.creatorId = userInfo.Id;
-        Vault created = _vs.Create(newVault);
-        created.Creator = userInfo;
-        return Ok(created);
+        return Ok(_ps.GetOrCreate(userInfo));
       }
       catch (System.Exception e)
       {
         return BadRequest(e.Message);
       }
     }
-    [HttpGet]
-    public ActionResult<IEnumerable<Vault>> Get()
+
+    [HttpGet("{id}/vault")]
+    public async Task<ActionResult<Profile>> GetVaultsByProfile(string id)
     {
       try
       {
-        return Ok(_vs.Find());
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_vs.GetVaultsByProfile(id, userInfo?.Id));
       }
       catch (System.Exception e)
       {
         return BadRequest(e.Message);
       }
+
     }
   }
 }

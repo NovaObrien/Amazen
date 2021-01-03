@@ -64,10 +64,13 @@ namespace amazen_server
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "amazen-server", Version = "v1" });
       });
-      // services.AddTransient<KeepRepository>();
-      // services.AddTransient<KeepService>();
+      services.AddScoped<IDbConnection>(X => CreateDbConnection());
+
       services.AddTransient<VaultService>();
       services.AddTransient<VaultRepository>();
+      // services.AddTransient<ProfilesService>()
+      // services.AddTransient<KeepRepository>();
+      // services.AddTransient<KeepService>();
       // REVIEW Do you want to do something here?
 
     }
@@ -75,7 +78,7 @@ namespace amazen_server
 
     private IDbConnection CreateDbConnection()
     {
-      string connectionString = Configuration.GetSection("DB").GetValue<string>("gearhost");
+      string connectionString = Configuration.GetSection("DB").GetValue<string>("GearHost");
       return new MySqlConnection(connectionString);
     }
 

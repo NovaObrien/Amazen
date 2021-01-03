@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using amazen_server.Models;
 using amazen_server.Repositories;
 
@@ -21,21 +22,12 @@ namespace amazen_server.Services
 
     public List<Vault> Find()
     {
-      throw new System.NotImplementedException();
+      return _repo.Find();
     }
 
-    public Vault FindById(int id)
+    internal IEnumerable<Vault> GetVaultsByProfile(string profId, string userId)
     {
-      throw new System.NotImplementedException();
-    }
-    public bool Delete(int id)
-    {
-      throw new System.NotImplementedException();
-    }
-
-    public Vault Edit(Vault t)
-    {
-      throw new System.NotImplementedException();
+      return _repo.getVaultsByProfile(profId).ToList().FindAll(v => v.creatorId == userId || v.isPublic);
     }
   }
 }

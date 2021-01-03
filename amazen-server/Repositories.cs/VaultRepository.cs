@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using amazen_server.Models;
 using Dapper;
 
@@ -28,16 +29,22 @@ namespace amazen_server.Repositories
 
     public List<Vault> Find()
     {
-      throw new System.NotImplementedException();
+      return _db.Query<Vault>(@"
+        SELECT * FROM vaults
+      ").ToList();
     }
 
-    public Vault FindById(int id)
+    internal IEnumerable<Vault> getVaultsByProfile(string profId)
     {
-      throw new System.NotImplementedException();
+      string sql = @"
+        SELECT
+        vault.*,
+        p.*
+        FROM vaults vault
+        JOIN profiles p ON vault.creatorId = p.id
+        WHERE blog.creatorId = @profId; ";
+      return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => { vault.Creator = profile; return vault; }, new { profId }, splitOn: "id");
     }
-    public bool Delete(int id)
-    {
-      throw new System.NotImplementedException();
-    }
+
   }
 }
