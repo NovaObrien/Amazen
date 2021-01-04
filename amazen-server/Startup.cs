@@ -51,7 +51,7 @@ namespace amazen_server
                   builder
                         .WithOrigins(new string[]{
                         "http://localhost:8080",
-                        "http://localhost:8081"
+                        "http://localhost:8081",
               })
                         .AllowAnyMethod()
                         .AllowAnyHeader()
@@ -68,7 +68,8 @@ namespace amazen_server
 
       services.AddTransient<VaultService>();
       services.AddTransient<VaultRepository>();
-      // services.AddTransient<ProfilesService>()
+      services.AddTransient<ProfilesService>();
+      services.AddTransient<ProfilesRepository>();
       // services.AddTransient<KeepRepository>();
       // services.AddTransient<KeepService>();
       // REVIEW Do you want to do something here?
