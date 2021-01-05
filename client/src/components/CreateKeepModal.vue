@@ -1,13 +1,13 @@
 <template>
   <div class="create-keep-modal">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary font" data-toggle="modal" data-target="#exampleModalCenter">
-      CreateKeepModal
+    <button type="button" class="btn btn-warning font" data-toggle="modal" data-target="#keep-modal">
+      Create Keep
     </button>
 
     <!-- Modal -->
     <div class="modal fade"
-         id="exampleModalCenter"
+         id="keep-modal"
          tabindex="-1"
          role="dialog"
          aria-labelledby="exampleModalCenterTitle"
@@ -16,7 +16,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" id="modal">
           <div class="modal-header">
-            <h1 class="modal-title text-dark" id="exampleModalCenterTitle">
+            <h1 class="modal-title text-dark" id="keep-title">
               New Keep
             </h1>
             <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
@@ -31,14 +31,25 @@
                     Title
                   </h4>
                   <input class="rounded" id="title" type="text" placeholder="Title...">
-
-                  <div class="form-check">
-                    <label class="form-check-label mt-5">
-                      <input type="checkbox" class="form-check-input" name="optradio">
-                      <h5>Private?</h5>
-                      <h6 id="subnote">Private Keeps can only be seen by you</h6>
-                    </label>
-                  </div>
+                  <h4 class="text-dark">
+                    ImgUrl
+                  </h4>
+                  <input class="rounded" id="title" type="text" placeholder="ImgUrl...">
+                  <h4 class="text-dark">
+                    Description
+                  </h4>
+                  <textarea
+                    class="form-control rounded mt-3 text-dark"
+                    rows="5"
+                    name=""
+                    id=""
+                    aria-describedby="Body"
+                    placeholder="Description..."
+                  />
+                  <h4 class="text-dark">
+                    Title
+                  </h4>
+                  <input class="rounded" id="title" type="text" placeholder="Title...">
                 </form>
               </div>
             </div>
@@ -65,15 +76,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+input:focus {
+    // outline: none !important;
+    outline-color: rgb(0, 255, 179);
+    // box-shadow: 0 0 15px rgb(0, 255, 179);
+}
+#keep-title{
+  font-family: 'Redressed', cursive;
+  font-size: 60px;
+}
 #modal{
   border:rgb(0, 255, 179) 6px solid;
 }
 #title{
-  font-size: 80%;
+  width: 100%;
   border-color: rgba(128, 128, 128, 0.205);
-}
-#subnote{
-  color: grey;
 }
 .modal-content{
   border: 10px;

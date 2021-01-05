@@ -1,8 +1,8 @@
 <template>
   <div class="create-vault-modal">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-success font" data-toggle="modal" data-target="#exampleModalCenter">
-      Create Vault
+    <button type="button" class="btn btn-secondary font border-0" data-toggle="modal" data-target="#exampleModalCenter">
+      <h1>+</h1>
     </button>
 
     <!-- Modal -->
@@ -16,9 +16,9 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" id="modal">
           <div class="modal-header">
-            <h1 class="modal-title text-dark" id="exampleModalCenterTitle">
+            <p class="modal-title text-dark" id="exampleModalCenterTitle">
               New Vault
-            </h1>
+            </p>
             <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -65,11 +65,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.modal-header{
+  font-family: 'Redressed', cursive;
+  font-size: 60px;
+}
 #modal{
   border:rgb(0, 255, 179) 6px solid;
 }
 #title{
-  font-size: 80%;
+  width: 80%;
   border-color: rgba(128, 128, 128, 0.205);
 }
 #subnote{

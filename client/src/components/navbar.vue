@@ -1,12 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img
-          alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
-        />
+        <p class="px-1 rounded text-dark" id="logo">
+          K
+        </p>
       </div>
     </router-link>
     <button
@@ -36,16 +34,16 @@
 
         <div class="dropdown" v-else>
           <div
-            class="dropdown-toggle"
+            class="dropdown-toggle bg-dark p-3 rounded"
             @click="state.dropOpen = !state.dropOpen"
           >
             <img
               :src="user.picture"
               alt="user photo"
               height="40"
-              class="rounded"
+              class="rounded-circle"
             />
-            <span class="mx-3">{{ user.name }}</span>
+            <span class="mx-3 text-secondary" id="username">{{ user.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
@@ -95,6 +93,20 @@ export default {
 </script>
 
 <style scoped>
+#username{
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+
+}
+#logo{
+  font-family: 'Audiowide', cursive;
+  font-size: 50px;
+  border: 6px solid;
+
+}
+.navbar{
+  background-color: #55EFC4;
+}
 .dropdown-menu {
   user-select: none;
   display: block;
