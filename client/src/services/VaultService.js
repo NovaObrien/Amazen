@@ -14,6 +14,17 @@ class VaultService {
     }
   }
 
+  async getPublicVaults(id) {
+    try {
+      logger.log(AppState.profile.id)
+      const res = await api.get('profile/' + id + '/vault')
+      AppState.vaults = res.data
+      logger.log(AppState.vaults)
+    } catch (err) {
+      logger.error('Get Failed', err)
+    }
+  }
+
   async createVault(vault) {
     try {
       const res = await api.post('api/vault', vault)

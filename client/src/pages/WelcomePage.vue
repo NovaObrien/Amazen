@@ -1,5 +1,5 @@
 <template>
-  <div class="home grid m-1">
+  <div class="welcome grid m-1">
     <keep-component v-for="k in keeps" :key="k.id" :keep-prop="k" />
   </div>
 </template>
@@ -13,14 +13,12 @@ import { vaultService } from '../services/VaultService'
 
 export default {
   components: { KeepComponent },
-  name: 'Home',
+  name: 'Welcome',
 
   setup() {
     onMounted(() => {
       keepService.getKeeps()
-      // if (AppState.userInfo != null) {
       vaultService.getMyVaults()
-      // }
     })
     return {
       keeps: computed(() => AppState.keeps)

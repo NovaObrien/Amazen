@@ -34,6 +34,19 @@ namespace latefall2020_dotnet_bloggr.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpGet("{id}")]
+    [Authorize]
+    public Task<ActionResult<Profile>> GetPublicProfile(string id)
+    {
+      try
+      {
+        return Ok(_ps.getPublicProfile(id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
     [HttpGet("{id}/vault")]
     [Authorize]

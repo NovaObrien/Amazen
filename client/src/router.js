@@ -18,17 +18,27 @@ const routes = [
       })
     },
     children: [{
+      path: 'home',
+      name: 'Home',
+      component: loadPage('HomePage')
+    },
+    {
       path: 'profile',
       name: 'Profile',
-      component: loadPage('ProfilePage'),
-      beforeEnter: authGuard
+      component: loadPage('ProfilePage')
+    },
+    {
+      path: 'publicProfile/:id',
+      name: 'PublicProfile',
+      component: loadPage('PublicProfilePage')
     }]
   },
   {
     path: '/',
-    name: 'Home',
-    component: loadPage('HomePage')
+    name: 'Welcome',
+    component: loadPage('WelcomePage')
   }
+
 ]
 
 const router = createRouter({

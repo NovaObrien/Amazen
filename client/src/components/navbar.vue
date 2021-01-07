@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <p class="px-1 rounded text-dark" id="logo">
+        <p class="px-1 rounded" id="logo">
           K
         </p>
       </div>
@@ -18,11 +18,8 @@
     > -->
     <!-- <span class="navbar-toggler-icon" />
     </button> -->
+    <search-bar-component class="search-bar rounded mx-auto" />
     <div id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-        </li>
-      </ul>
       <span class="navbar-text">
         <button
           class="btn btn-outline-primary text-uppercase"
@@ -62,7 +59,38 @@
               </div>
             </div>
           </div>
-        </div></span>
+          <div
+            class="dropdown-toggle p-3 rounded large"
+            @click="state.dropOpen = !state.dropOpen"
+          >
+
+            <img
+              :src="user.picture"
+              alt="user photo"
+              height="40"
+              class="rounded-circle"
+            />
+            <span class="mx-3">{{ user.name }}</span>
+            <div
+              class="dropdown-menu p-0 list-group w-100"
+              :class="{ show: state.dropOpen }"
+              @click="state.dropOpen = false"
+            >
+              <router-link :to="{ name: 'Profile' }">
+                <div class="list-group-item list-group-item-action hoverable">
+                  Profile
+                </div>
+              </router-link>
+              <div
+                class="list-group-item list-group-item-action hoverable"
+                @click="logout"
+              >
+                logout
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
     </div>
   </nav>
 </template>
@@ -71,6 +99,8 @@
 import { AuthService } from '../services/AuthService'
 import { AppState } from '../AppState'
 import { computed, reactive } from 'vue'
+import router from '../router'
+import HomePageVue from '../pages/HomePage.vue'
 export default {
   name: 'Navbar',
   setup() {
@@ -81,7 +111,8 @@ export default {
       state,
       user: computed(() => AppState.user),
       async login() {
-        AuthService.loginWithPopup()
+        await AuthService.loginWithPopup()
+        router.push(HomePageVue)
       },
       async logout() {
         await AuthService.logout({ returnTo: window.location.origin })
@@ -92,16 +123,21 @@ export default {
 </script>
 
 <style scoped>
+
 #username{
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
 
 }
 #logo{
+  color: #636E72;
   font-family: 'Audiowide', cursive;
   font-size: 50px;
   border: 6px solid;
-
+}
+#logo:hover{
+  color: #000;
+  border-color: #000;
 }
 .navbar{
   background-color: #55EFC4;

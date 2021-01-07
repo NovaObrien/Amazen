@@ -22,7 +22,7 @@ namespace amazen_server.Services
 
     internal IEnumerable<Vault> GetVaultsByProfile(string profileId, string userId)
     {
-      return _repo.getVaultsByProfile(profileId).ToList().FindAll(v => v.CreatorId == userId || v.IsPrivate);
+      return _repo.getVaultsByProfile(profileId).ToList().FindAll(v => v.CreatorId == userId || !v.IsPrivate);
     }
     internal string Delete(int id, string userId)
     {

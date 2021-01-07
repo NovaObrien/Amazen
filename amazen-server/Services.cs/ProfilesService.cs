@@ -20,5 +20,9 @@ namespace amazen_server.Services
       }
       return foundProfile;
     }
+    public Profile GetPublicProfile(string id)
+    {
+      return _repo.GetByEmail(id);
+    }
   }
 }

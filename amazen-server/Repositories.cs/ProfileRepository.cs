@@ -18,6 +18,11 @@ namespace amazen_server.Repositories
       string sql = "SELECT * FROM profiles WHERE email = @Email";
       return _db.QueryFirstOrDefault<Profile>(sql, new { email });
     }
+    public Profile GetById(string id)
+    {
+      string sql = "SELECT * FROM profiles WHERE id = @Id";
+      return _db.QueryFirstOrDefault<Profile>(sql, new { id });
+    }
 
     public Profile Create(Profile userInfo)
     {
