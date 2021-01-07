@@ -19,7 +19,7 @@
             <p class="modal-title text-dark" id="exampleModalCenterTitle">
               New Vault
             </p>
-            <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close" id="modalClose">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -30,11 +30,11 @@
                   <h4 class="text-dark">
                     Title
                   </h4>
-                  <input class="rounded" id="title" type="text" placeholder="Title...">
+                  <input class="rounded" id="title" type="text" placeholder="Title..." v-model="state.newVault.title">
 
                   <div class="form-check">
                     <label class="form-check-label mt-5">
-                      <input type="checkbox" class="form-check-input" name="optradio">
+                      <input type="checkbox" class="form-check-input" name="optradio" v-model="state.newVault.isPrivate">
                       <h5>Private?</h5>
                       <h6 id="subnote">Private Vaults can only be seen by you</h6>
                     </label>
@@ -44,7 +44,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success">
+            <button type="button" class="btn btn-success" @click="createVault(vault)">
               Create
             </button>
           </div>
@@ -55,10 +55,22 @@
 </template>
 
 <script>
+import { reactive } from 'vue'
+import { vaultService } from '../services/VaultService'
 export default {
   name: 'CreateVaultModal',
   setup() {
-    return {}
+    const state = reactive({
+      newVault: {}
+    })
+    return {
+      state,
+      async createVault(vault) {
+        document.getElementById('modalClose').click()
+        await vaultService.createVault(state.newVault)
+        state.newVault = {}
+      }
+    }
   },
   components: {}
 }

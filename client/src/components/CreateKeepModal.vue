@@ -1,8 +1,10 @@
 <template>
   <div class="create-keep-modal">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-warning font" data-toggle="modal" data-target="#keep-modal">
-      Create Keep
+    <button type="button" class="btn btn-secondary font" data-toggle="modal" data-target="#keep-modal">
+      <h1>
+        +
+      </h1>
     </button>
 
     <!-- Modal -->
@@ -28,13 +30,25 @@
               <div class="card-body">
                 <form class="form-group" action="" @submit.prevent="createKeep">
                   <h4 class="text-dark">
-                    Title
+                    Name
                   </h4>
-                  <input class="rounded" id="title" type="text" placeholder="Title...">
+                  <input class="rounded"
+                         id="title"
+                         type="text"
+                         placeholder="Name..."
+                         autocomplete="off"
+                         v-model="state.newKeep.name"
+                  >
                   <h4 class="text-dark">
                     ImgUrl
                   </h4>
-                  <input class="rounded" id="title" type="text" placeholder="ImgUrl...">
+                  <input class="rounded"
+                         id="title"
+                         type="text"
+                         placeholder="ImgUrl..."
+                         autocomplete="off"
+                         v-model="state.newKeep.img"
+                  >
                   <h4 class="text-dark">
                     Description
                   </h4>
@@ -45,17 +59,24 @@
                     id=""
                     aria-describedby="Body"
                     placeholder="Description..."
+                    v-model="state.newKeep.description"
                   />
-                  <h4 class="text-dark">
-                    Title
-                  </h4>
-                  <input class="rounded" id="title" type="text" placeholder="Title...">
+                  <!-- <h4 class="text-dark">
+                    Tags
+                  </h4> -->
+                  <!-- <input class="rounded"
+                         id="title"
+                         type="text"
+                         placeholder="Tags..."
+                         autocomplete="off"
+                         v-model="newKeep.tag"
+                  > -->
                 </form>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success">
+            <button type="button" class="btn btn-success" @click="createKeep(keep)">
               Create
             </button>
           </div>
@@ -66,10 +87,23 @@
 </template>
 
 <script>
+import { reactive } from 'vue'
+import { keepService } from '../services/KeepService'
 export default {
   name: 'CreateKeepModal',
   setup() {
-    return {}
+    const state = reactive({
+      newKeep: {}
+    })
+    return {
+      state,
+      async createKeep(keep) {
+        document.getElementById('modalClose').click()
+        await keepService.createKeep(state.newKeep)
+        state.newVault = {}
+      }
+
+    }
   },
   components: {}
 }
@@ -78,7 +112,7 @@ export default {
 <style lang="scss" scoped>
 input:focus {
     // outline: none !important;
-    outline-color: rgb(0, 255, 179);
+    outline-color: rgb(0, 204, 255);
     // box-shadow: 0 0 15px rgb(0, 255, 179);
 }
 #keep-title{

@@ -70,8 +70,8 @@ namespace amazen_server
       services.AddTransient<VaultRepository>();
       services.AddTransient<ProfilesService>();
       services.AddTransient<ProfilesRepository>();
-      // services.AddTransient<KeepRepository>();
-      // services.AddTransient<KeepService>();
+      services.AddTransient<KeepRepository>();
+      services.AddTransient<KeepService>();
       // REVIEW Do you want to do something here?
 
     }

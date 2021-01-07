@@ -6,7 +6,7 @@ namespace amazen_server.Repositories
   {
     int Create(T t);
     // T FindById(int id);
-    List<T> Find();
+    // List<T> Find();
 
     // bool Delete(int id);
   }

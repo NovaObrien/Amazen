@@ -1,8 +1,11 @@
 <template>
-  <div class="vault-component" @click="openVault(vault)">
+  <div class="vault-component mx-3 mb-3">
     <div class="col rounded p-3 shadow" id="card">
-      <img class="rounded" src="https://via.placeholder.com/250" alt="">
-      <p>Vault Name</p>
+      <button type="button" class="close text-danger" @click="deleteVault(vault)">
+        <span>&times;</span>
+      </button>
+      <img class="rounded" src="https://via.placeholder.com/250" alt="" @click="openVault(vault)">
+      <p>{{ vault.title }}</p>
     </div>
   </div>
 </template>
@@ -10,6 +13,7 @@
 <script>
 import { computed } from 'vue'
 import router from '../router'
+import { vaultService } from '../services/VaultService'
 export default {
   name: 'VaultComponent',
   props: {
@@ -26,8 +30,12 @@ export default {
       vault: computed(() => props.vaultProp),
       openVault(vault) {
         router.push({ name: 'Vault', params: { id: vault.id } })
+      },
+      deleteVault(vault) {
+        if (window.confirm('Are you sure you want to delete this vault?')) {
+          vaultService.deleteVault(vault)
+        }
       }
-      // NOTE Needs Delete Function
     }
   },
   components: {}

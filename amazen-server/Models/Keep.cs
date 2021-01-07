@@ -8,13 +8,13 @@ namespace amazen_server.Models
     public string Description { get; set; }
     public string Img { get; set; }
     public int Views { get; set; }
-    public int Shares { get; set; }
-    public int keepSaves { get; set; }
+    // public int Shares { get; set; }
+    public int KeepSaves { get; set; }
     public Profile Creator { get; set; }
   }
 
-  // public class CompanyKeepViewModel : Keep
+  // public class VaultKeepViewModel : Keep
   // {
-  //   public int CompanyItemId { get; set; }
+  //   public int VaultItemId { get; set; }
   // }
 }

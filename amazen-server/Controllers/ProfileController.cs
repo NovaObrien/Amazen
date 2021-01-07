@@ -35,19 +35,20 @@ namespace latefall2020_dotnet_bloggr.Controllers
       }
     }
 
-    // [HttpGet("{id}/vault")]
-    // public async Task<ActionResult<Profile>> GetVaultsByProfile(string id)
-    // {
-    //   try
-    //   {
-    //     Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-    //     return Ok(_vs.GetVaultsByProfile(id, userInfo?.Id));
-    //   }
-    //   catch (System.Exception e)
-    //   {
-    //     return BadRequest(e.Message);
-    //   }
+    [HttpGet("{id}/vault")]
+    [Authorize]
+    public async Task<ActionResult<Profile>> GetVaultsByProfile(string id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_vs.GetVaultsByProfile(id, userInfo?.Id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
 
-    // }
+    }
   }
 }

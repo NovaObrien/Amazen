@@ -26,7 +26,7 @@ namespace amazen_server.Controllers
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        newVault.creatorId = userInfo.Id;
+        newVault.CreatorId = userInfo.Id;
         Vault created = _vs.Create(newVault);
         created.Creator = userInfo;
         return Ok(created);
@@ -36,17 +36,34 @@ namespace amazen_server.Controllers
         return BadRequest(e.Message);
       }
     }
-    [HttpGet]
-    public ActionResult<IEnumerable<Vault>> Get()
+    [Authorize]
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<string>> Delete(int id)
     {
       try
       {
-        return Ok(_vs.Find());
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_vs.Delete(id, userInfo.Id));
       }
       catch (System.Exception e)
       {
+
         return BadRequest(e.Message);
+
       }
     }
   }
+
 }
+// [HttpGet]
+// public ActionResult<IEnumerable<Vault>> Get()
+// {
+//   try
+//   {
+//     return Ok(_vs.Find());
+//   }
+//   catch (System.Exception e)
+//   {
+//     return BadRequest(e.Message);
+//   }
+// }

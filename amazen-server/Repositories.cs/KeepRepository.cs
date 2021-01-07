@@ -1,46 +1,43 @@
-// using System.Collections.Generic;
-// using System.Data;
-// using System.Linq;
-// using amazen_server.Models;
-// using Dapper;
+using System.Collections.Generic;
+using System.Data;
+using amazen_server.Models;
+using Dapper;
 
-// namespace amazen_server.Repositories
-// {
-//   public class KeepRepository : IRepository<Keep>
-//   {
-//     private readonly IDbConnection _db;
+namespace amazen_server.Repositories
+{
 
-//     public KeepRepository(IDbConnection db)
-//     {
-//       _db = db;
-//     }
-//     public Keep Create(Keep keep)
-//     {
-//       int id = _db.ExecuteScalar<int>(@"
-//       INSERT INTO keeps (name, description, img)
-//       VALUES (@Name, @Description, @Img)
-//       SELECT LAST_INSERT_ID()", keep
-//       );
-//       keep.Id = id;
-//       return keep;
-//     }
+  public class KeepRepository : IRepository<Keep>
+  {
+    private readonly IDbConnection _db;
 
-//     public bool Delete(int id)
-//     {
-//       int success = _db.Execute(@"
-//         DELETE FROM keeps WHERE id = @id
-//       ", new { id });
-//       return success > 0;
-//     }
+    public KeepRepository(IDbConnection db)
+    {
+      _db = db;
+    }
+    public int Create(Keep keep)
+    {
+      string sql = @"
+      INSERT INTO keeps
+      (name, description, img, creatorId)
+      VALUES
+      (@Name, @Description, @Img, @CreatorId);
+      SELECT LAST_INSERT_ID();
+      ";
+      return _db.ExecuteScalar<int>(sql, keep);
+    }
+    internal IEnumerable<Keep> Find()
+    {
+      string sql = @"
+      SELECT k.*, 
+      p.id AS profileId, 
+      p.name AS profileName,
+      p.picture,
+      p.email
+      FROM keeps k
+      JOIN profiles p ON p.id = k.creatorId;
+      ";
+      return _db.Query<Keep, Profile, Keep>(sql, (Keep, profile) => { Keep.Creator = profile; return Keep; }, splitOn: "profileId");
+    }
+  }
+}
 
-//     public List<Keep> Find()
-//     {
-//       return _db.Query<Keep>("SELECT * FROM keeps").ToList();
-//     }
-
-//     public Keep FindById(int id)
-//     {
-//       return _db.Query<Keep>("SELECT * FROM quests WHERE id = @id", new { id }).FirstOrDefault();
-//     }
-//   }
-// }

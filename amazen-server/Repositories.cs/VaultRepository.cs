@@ -18,32 +18,36 @@ namespace amazen_server.Repositories
     {
       string sql = @"
       INSERT INTO vaults
-      (name, description, creatorId)
+      (title, isPrivate, creatorId)
       VALUES
-      (@Name, @Description, @creatorId);
+      (@Title, @IsPrivate, @CreatorId);
       SELECT LAST_INSERT_ID();
       ";
       return _db.ExecuteScalar<int>(sql, vault);
     }
 
 
-    public List<Vault> Find()
+    public Vault Find(int id)
     {
-      return _db.Query<Vault>(@"
-        SELECT * FROM vaults
-      ").ToList();
+      string sql = @"SELECT * FROM vaults WHERE id = @id";
+      return _db.QueryFirstOrDefault<Vault>(sql, new { id });
     }
 
-    internal IEnumerable<Vault> getVaultsByProfile(string profId)
+    internal IEnumerable<Vault> getVaultsByProfile(string profileId)
     {
       string sql = @"
-        SELECT
-        vault.*,
-        p.*
-        FROM vaults vault
-        JOIN profiles p ON vault.creatorId = p.id
-        WHERE blog.creatorId = @profId; ";
-      return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => { vault.Creator = profile; return vault; }, new { profId }, splitOn: "id");
+        SELECT v.*, p.* FROM vaults v
+        JOIN profiles p ON v.CreatorId = p.Id
+        WHERE v.CreatorId = @profileId; ";
+
+      return _db.Query<Vault, Profile, Vault>(sql, (v, p) => { v.Creator = p; return v; }, new { profileId }, splitOn: "id");
+    }
+
+    internal bool Delete(int id)
+    {
+      string sql = "DELETE FROM vaults WHERE Id = @id";
+      int valid = _db.Execute(sql, new { id });
+      return valid > 0;
     }
 
   }

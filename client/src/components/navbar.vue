@@ -7,7 +7,7 @@
         </p>
       </div>
     </router-link>
-    <button
+    <!-- <button
       class="navbar-toggler"
       type="button"
       data-toggle="collapse"
@@ -15,10 +15,10 @@
       aria-controls="navbarText"
       aria-expanded="false"
       aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon" />
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
+    > -->
+    <!-- <span class="navbar-toggler-icon" />
+    </button> -->
+    <div id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
         </li>
@@ -34,7 +34,7 @@
 
         <div class="dropdown" v-else>
           <div
-            class="dropdown-toggle bg-dark p-3 rounded"
+            class="dropdown-toggle p-3 rounded small"
             @click="state.dropOpen = !state.dropOpen"
           >
             <img
@@ -43,27 +43,26 @@
               height="40"
               class="rounded-circle"
             />
-            <span class="mx-3 text-secondary" id="username">{{ user.name }}</span>
-          </div>
-          <div
-            class="dropdown-menu p-0 list-group w-100"
-            :class="{ show: state.dropOpen }"
-            @click="state.dropOpen = false"
-          >
-            <router-link :to="{ name: 'Profile' }">
-              <div class="list-group-item list-group-item-action hoverable">
-                Profile
-              </div>
-            </router-link>
+
             <div
-              class="list-group-item list-group-item-action hoverable"
-              @click="logout"
+              class="dropdown-menu p-0 list-group w-100"
+              :class="{ show: state.dropOpen }"
+              @click="state.dropOpen = false"
             >
-              logout
+              <router-link :to="{ name: 'Profile' }">
+                <div class="list-group-item list-group-item-action hoverable">
+                  Profile
+                </div>
+              </router-link>
+              <div
+                class="list-group-item list-group-item-action hoverable"
+                @click="logout"
+              >
+                logout
+              </div>
             </div>
           </div>
-        </div>
-      </span>
+        </div></span>
     </div>
   </nav>
 </template>
@@ -107,6 +106,7 @@ export default {
 .navbar{
   background-color: #55EFC4;
 }
+
 .dropdown-menu {
   user-select: none;
   display: block;
@@ -116,6 +116,27 @@ export default {
 .dropdown-menu.show {
   transform: scale(1);
 }
+.dropdown-toggle{
+  background: rgb(126, 126, 126);
+}
+.dropdown-toggle:hover {
+  background: #000;
+}
+@media(max-width: 600px){
+  .large{
+    display: none;
+  }
+  #logo{
+    font-size: 30px;
+    border: 4px solid;
+  }
+}
+@media(min-width: 600px){
+  .small{
+    display: none;
+  }
+}
+
 .hoverable {
   cursor: pointer;
 }
