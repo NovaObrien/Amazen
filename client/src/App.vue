@@ -30,5 +30,6 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";;
 
 </style>

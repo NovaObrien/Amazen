@@ -2,10 +2,10 @@
   <div class="search-bar-component">
     <form>
       <input class="rounded border-0" type="text" placeholder="Search.." name="search">
-      <!-- <button class="btn btn-secondary">
+      <button class="btn btn-secondary">
         Search
-        <i class="fa fa-search"></i>
-      </button> -->
+        <i class="fa fa-search text-danger"></i>
+      </button>
     </form>
   </div>
 </template>
@@ -22,5 +22,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

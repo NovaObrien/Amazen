@@ -1,7 +1,7 @@
 <template>
   <div class="vault-component mx-3 mb-3">
     <div class="col rounded p-3 shadow" id="card">
-      <button type="button" class="close text-danger" @click="deleteVault(vault)" v-if="$route.path == '/profile'">
+      <button type="button" class="close text-danger" @click="deleteVault(vault)">
         <span>&times;</span>
       </button>
       <img class="rounded" src="https://via.placeholder.com/250" alt="" @click="openVault(vault)">

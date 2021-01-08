@@ -7,7 +7,7 @@
       <div class="col mx-auto">
         <h1>{{ profile.name }}</h1>
         <h1>Vaults: {{ vaults.length }}</h1>
-        <h1>Keeps: </h1>
+        <h1>Keeps: {{ keeps.length }}</h1>
       </div>
       <div class="col"></div>
     </div>
@@ -34,9 +34,8 @@
         </div>
       </div>
     </div>
-    <div class="row ml-3">
-      <!-- NOTE need to build component -->
-      <!-- <keep-component /> -->
+    <div class="grid ml-3">
+      <profile-keep-component v-for="k in keeps" :key="k.id" :keep-prop="k" />
     </div>
   </div>
 </template>
@@ -47,6 +46,7 @@ import { AppState } from '../AppState'
 import { profileService } from '../services/ProfileService'
 import { vaultService } from '../services/VaultService'
 import { useRoute } from 'vue-router'
+import { keepService } from '../services/KeepService'
 export default {
   name: 'PublicProfilePage',
   setup() {
@@ -54,10 +54,12 @@ export default {
     onMounted(() => {
       profileService.getPublicProfile(route.params.id)
       vaultService.getPublicVaults(route.params.id)
+      keepService.getProfileKeeps(route.params.id)
     })
     return {
       profile: computed(() => AppState.publicProfile),
-      vaults: computed(() => AppState.vaults)
+      vaults: computed(() => AppState.vaults),
+      keeps: computed(() => AppState.keeps)
     }
   },
   components: {}
@@ -65,5 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.grid{
+  columns: 4;
+}
 </style>

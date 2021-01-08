@@ -26,9 +26,9 @@ namespace amazen_server.Services
       return _repo.Find();
     }
 
-    public Keep FindById(int id)
+    internal IEnumerable<Keep> GetKeepsByProfile(string id)
     {
-      throw new NotImplementedException();
+      return _repo.GetProfileKeeps(id);
     }
     public bool Delete(int id)
     {

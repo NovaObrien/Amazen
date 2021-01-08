@@ -22,7 +22,7 @@ namespace amazen_server.Services
     }
     public Profile GetPublicProfile(string id)
     {
-      return _repo.GetByEmail(id);
+      return _repo.GetById(id);
     }
   }
 }

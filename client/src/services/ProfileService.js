@@ -15,7 +15,7 @@ class ProfileService {
   async getPublicProfile(id) {
     try {
       const res = await api.get('/profile/' + id)
-      AppState.profile = res.data
+      AppState.publicProfile = res.data
     } catch (error) {
       logger.error(error)
     }

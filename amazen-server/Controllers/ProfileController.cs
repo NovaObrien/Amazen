@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using amazen_server.Models;
 using amazen_server.Services;
@@ -13,11 +14,13 @@ namespace latefall2020_dotnet_bloggr.Controllers
   {
     private readonly ProfilesService _ps;
     private readonly VaultService _vs;
+    private readonly KeepService _ks;
 
-    public ProfileController(ProfilesService ps, VaultService vs)
+    public ProfileController(ProfilesService ps, VaultService vs, KeepService ks)
     {
       _ps = ps;
       _vs = vs;
+      _ks = ks;
     }
 
     [HttpGet]
@@ -36,11 +39,25 @@ namespace latefall2020_dotnet_bloggr.Controllers
     }
     [HttpGet("{id}")]
     [Authorize]
-    public Task<ActionResult<Profile>> GetPublicProfile(string id)
+    public ActionResult<Profile> GetPublicProfile(string id)
     {
       try
       {
-        return Ok(_ps.getPublicProfile(id));
+        return Ok(_ps.GetPublicProfile(id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpGet("{id}/keep")]
+    [Authorize]
+    public ActionResult<IEnumerable<Keep>> GetProfileKeeps(string id)
+    {
+      try
+      {
+        return Ok(_ks.GetKeepsByProfile(id));
       }
       catch (System.Exception e)
       {
@@ -61,7 +78,6 @@ namespace latefall2020_dotnet_bloggr.Controllers
       {
         return BadRequest(e.Message);
       }
-
     }
   }
 }

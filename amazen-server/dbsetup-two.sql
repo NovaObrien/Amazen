@@ -50,14 +50,17 @@
 
     -- SELECT k.*, p.id AS profileId, p.picture, p.name AS profileName FROM keeps k
     -- INNER JOIN profiles p ON p.id = k.creatorId;
-      SELECT k.*, 
-      p.id AS profileId, 
-      p.name AS profileName,
-      p.picture,
-      p.email
-      FROM keeps k
-      INNER JOIN profiles p ON p.id = k.creatorId;
+
+      -- SELECT k.*, 
+      -- p.id AS profileId, 
+      -- p.name AS profileName,
+      -- p.picture,
+      -- p.email
+      -- FROM keeps k
+      -- INNER JOIN profiles p ON p.id = k.creatorId;
       
 
     -- SELECT * FROM profiles;
+
+    -- SELECT * FROM profiles WHERE id = @Id
 

@@ -38,6 +38,11 @@ namespace amazen_server.Repositories
       ";
       return _db.Query<Keep, Profile, Keep>(sql, (Keep, profile) => { Keep.Creator = profile; return Keep; }, splitOn: "profileId");
     }
+    internal IEnumerable<Keep> GetProfileKeeps(string id)
+    {
+      string sql = @"SELECT * FROM keeps WHERE creatorId = @Id";
+      return _db.Query<Keep>(sql, new { id });
+    }
   }
 }
 

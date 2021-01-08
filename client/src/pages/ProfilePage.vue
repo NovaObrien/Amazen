@@ -34,9 +34,8 @@
         </div>
       </div>
     </div>
-    <div class="row ml-3">
-      <!-- NOTE need to build component -->
-      <!-- <keep-component /> -->
+    <div class="grid ml-3">
+      <profile-keep-component v-for="k in keeps" :key="k.id" :keep-prop="k" />
     </div>
   </div>
 </template>
@@ -46,22 +45,27 @@ import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { vaultService } from '../services/VaultService'
 import CreateKeepModal from '../components/CreateKeepModal.vue'
+import { keepService } from '../services/KeepService'
 export default {
   components: { CreateKeepModal },
   name: 'Profile',
   setup() {
     onMounted(() => {
       vaultService.getMyVaults()
+      keepService.getProfileKeeps(AppState.profile.id)
     })
     return {
       profile: computed(() => AppState.profile),
-      vaults: computed(() => AppState.vaults)
+      vaults: computed(() => AppState.vaults),
+      keeps: computed(() => AppState.keeps)
     }
   }
 }
 </script>
-
 <style scoped>
+.grid{
+  columns: 4;
+}
 #font{
   font-family: 'Redressed', cursive;
   font-size: 60px;
