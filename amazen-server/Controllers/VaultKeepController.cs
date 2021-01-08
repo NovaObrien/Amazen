@@ -49,5 +49,19 @@ namespace amazen_server.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpDelete("{id}")]
+    [Authorize]
+    public async Task<ActionResult<Keep>> Delete(int id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_vks.Delete(id, userInfo.Id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }

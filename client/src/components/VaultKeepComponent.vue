@@ -102,6 +102,9 @@
                         </div>
                       </div>
                     </div>
+                    <button class="btn btn-danger" @click="removeVaultKeep(keep)">
+                      Remove From Vault
+                    </button>
                   </div>
                 </div>
 
@@ -123,6 +126,7 @@
 import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
 import router from '../router'
+import { vaultKeepService } from '../services/VaultKeepService'
 export default {
   name: 'VaultKeepComponent',
   props: {
@@ -147,6 +151,12 @@ export default {
       },
       setCurrentKeep(keep) {
         AppState.currentKeep = keep
+      },
+      removeVaultKeep(keep) {
+        if (window.confirm('Are you sure you want to delete this vault?')) {
+          vaultKeepService.deleteVaultKeep(keep)
+        }
+        // document.getElementById('closeModal').click()
       }
     }
   },

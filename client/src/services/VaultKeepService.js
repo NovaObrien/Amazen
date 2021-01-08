@@ -19,5 +19,15 @@ class VaultKeepService {
       logger.error(error)
     }
   }
+
+  async deleteVaultKeep(keepData) {
+    try {
+      await api.delete('api/vaultKeep/' + keepData.id, keepData)
+      const index = AppState.keeps.findIndex(k => k.id === keepData.id)
+      AppState.keeps.splice(index, 1)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
 }
 export const vaultKeepService = new VaultKeepService()

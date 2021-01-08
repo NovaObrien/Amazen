@@ -7,7 +7,7 @@
       <div class="col mx-auto">
         <h1>{{ profile.name }}</h1>
         <h1>Vaults: {{ vaults.length }}</h1>
-        <h1>Keeps: </h1>
+        <h1>Keeps: {{ keeps.length }}</h1>
       </div>
       <div class="col"></div>
     </div>

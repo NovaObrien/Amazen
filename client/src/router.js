@@ -31,12 +31,12 @@ const routes = [
       path: 'profile',
       name: 'Profile',
       component: loadPage('ProfilePage')
-    },
-    {
-      path: 'publicProfile/:id',
-      name: 'PublicProfile',
-      component: loadPage('PublicProfilePage')
     }]
+  },
+  {
+    path: '/publicProfile/:id',
+    name: 'PublicProfile',
+    component: loadPage('PublicProfilePage')
   },
   {
     path: '/',

@@ -38,7 +38,6 @@ namespace latefall2020_dotnet_bloggr.Controllers
       }
     }
     [HttpGet("{id}")]
-    [Authorize]
     public ActionResult<Profile> GetPublicProfile(string id)
     {
       try
@@ -52,7 +51,6 @@ namespace latefall2020_dotnet_bloggr.Controllers
     }
 
     [HttpGet("{id}/keep")]
-    [Authorize]
     public ActionResult<IEnumerable<Keep>> GetProfileKeeps(string id)
     {
       try
@@ -66,7 +64,6 @@ namespace latefall2020_dotnet_bloggr.Controllers
     }
 
     [HttpGet("{id}/vault")]
-    [Authorize]
     public async Task<ActionResult<Profile>> GetVaultsByProfile(string id)
     {
       try
