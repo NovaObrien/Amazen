@@ -1,7 +1,12 @@
 <template>
   <div class="profile-keep-component">
     <div class="grid-item container-fluid rounded-lg px-3 pt-3" data-toggle="modal" :data-target="'.bd-example-modal-xl'+keep.id" id="keep-small">
-      <img class="rounded" :src="keep.img" alt="" id="keep-img">
+      <img class="rounded"
+           :src="keep.img"
+           alt=""
+           id="keep-img"
+           @click="setCurrentKeep(keep)"
+      >
       <div>
         <h4 class="text-secondary" id="title">
           {{ keep.name }}
@@ -133,6 +138,9 @@ export default {
           keepService.deleteKeep(keep)
         }
         document.getElementById('closeModal').click()
+      },
+      setCurrentKeep(keep) {
+        AppState.currentKeep = keep
       }
     }
   },

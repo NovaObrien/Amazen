@@ -18,8 +18,8 @@ class VaultService {
     try {
       logger.log(AppState.profile.id)
       const res = await api.get('profile/' + id + '/vault')
-      AppState.vaults = res.data
-      logger.log(AppState.vaults)
+      AppState.publicVaults = res.data
+      logger.log(AppState.publicVaults)
     } catch (err) {
       logger.error('Get Failed', err)
     }

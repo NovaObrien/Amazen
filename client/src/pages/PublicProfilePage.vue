@@ -54,11 +54,12 @@ export default {
     onMounted(() => {
       profileService.getPublicProfile(route.params.id)
       vaultService.getPublicVaults(route.params.id)
+      vaultService.getMyVaults()
       keepService.getProfileKeeps(route.params.id)
     })
     return {
       profile: computed(() => AppState.publicProfile),
-      vaults: computed(() => AppState.vaults),
+      vaults: computed(() => AppState.publicVaults),
       keeps: computed(() => AppState.keeps)
     }
   },

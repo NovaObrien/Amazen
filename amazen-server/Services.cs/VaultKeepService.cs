@@ -20,9 +20,10 @@ namespace amazen_server.Services
     {
       return _repo.Create(vaultKeep);
     }
-    internal IEnumerable<VaultKeep> GetByVaultId(int id, string userId)
+
+    internal IEnumerable<Keep> GetByVaultId(int vaultId, string userId)
     {
-      Vault vault = _vr.Find(id);
+      Vault vault = _vr.Find(vaultId);
       if (vault == null)
       {
         throw new Exception("Bad Id");
@@ -33,7 +34,7 @@ namespace amazen_server.Services
       }
       else
       {
-        return _repo.Find(id);
+        return _repo.Find(vaultId);
       }
     }
 

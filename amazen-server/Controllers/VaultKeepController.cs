@@ -35,14 +35,14 @@ namespace amazen_server.Controllers
         return BadRequest(e.Message);
       }
     }
-    [HttpGet("{id}")]
+    [HttpGet("{vaultId}")]
     [Authorize]
-    public async Task<ActionResult<Keep>> Get(int id)
+    public async Task<ActionResult<IEnumerable<Keep>>> Get(int vaultId)
     {
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        return Ok(_vks.GetByVaultId(id, userInfo?.Id));
+        return Ok(_vks.GetByVaultId(vaultId, userInfo?.Id));
       }
       catch (System.Exception e)
       {

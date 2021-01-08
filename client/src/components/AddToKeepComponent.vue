@@ -6,7 +6,7 @@
 
 <script>
 import { computed } from 'vue'
-import { keepVaultService } from '../services/KeepVaultService'
+import { vaultKeepService } from '../services/VaultKeepService'
 import { AppState } from '../AppState'
 export default {
   name: 'AddToKeepComponent',
@@ -23,7 +23,7 @@ export default {
       vault: computed(() => props.vaultProp),
       keep: computed(() => AppState.currentKeep),
       addToVault(id, keep) {
-        keepVaultService.add(id, keep)
+        vaultKeepService.add(id, keep)
       }
     }
   },
