@@ -22,5 +22,9 @@ namespace amazen_server.Repositories
       ";
       return _db.ExecuteScalar<VaultKeep>(sql, vaultKeep);
     }
+    internal VaultKeep Find(int id)
+    {
+
+    }
   }
 }

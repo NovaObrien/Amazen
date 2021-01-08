@@ -4,6 +4,7 @@ using amazen_server.Services;
 using Microsoft.AspNetCore.Mvc;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace amazen_server.Controllers
 {
@@ -28,6 +29,20 @@ namespace amazen_server.Controllers
         newVaultKeep.VaultId = id;
         VaultKeep Created = _vks.Create(newVaultKeep);
         return Ok(Created);
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+    [HttpGet("{id}")]
+    [Authorize]
+    public async Task<ActionResult<Keep>> Get(int id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_vks.GetByVaultId(id, userInfo?.Id));
       }
       catch (System.Exception e)
       {
