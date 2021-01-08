@@ -1,6 +1,11 @@
 <template>
   <div class="keep-component">
-    <div class="grid-item container-fluid rounded-lg px-3 pt-3" data-toggle="modal" :data-target="'.bd-example-modal-xl'+keep.id" id="keep-small">
+    <div class="grid-item container-fluid rounded-lg px-3 pt-3"
+         data-toggle="modal"
+         :data-target="'.bd-example-modal-xl'+keep.id"
+         id="keep-small"
+         @click="setCurrentKeep(keep)"
+    >
       <img class="rounded" :src="keep.img" alt="" id="keep-img">
       <div>
         <h4 class="text-secondary" id="title">
@@ -139,6 +144,9 @@ export default {
       vaults: computed(() => AppState.vaults),
       selectProfile() {
         router.push({ name: 'PublicProfile', params: { id: props.keepProp.creatorId } })
+      },
+      setCurrentKeep(keep) {
+        AppState.currentKeep = keep
       }
     }
   },

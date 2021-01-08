@@ -64,3 +64,18 @@
 
     -- SELECT * FROM profiles WHERE id = @Id
 
+    CREATE TABLE vaultKeeps(
+      Id int NOT NULL AUTO_INCREMENT,
+      CreatorId VARCHAR(255) NOT NULL,
+      VaultId int NOT NULL,
+      KeepId int NOT NULL,
+      PRIMARY KEY (Id),
+      FOREIGN KEY (CreatorId)
+        REFERENCES profiles(Id),
+      FOREIGN KEY (KeepId)
+        REFERENCES keeps(Id),
+      FOREIGN KEY (VaultId)
+        REFERENCES vaults(Id)
+        ON DELETE CASCADE
+    );
+    -- DROP TABLE vaultkeeps;

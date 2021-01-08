@@ -6,5 +6,6 @@ export const AppState = reactive({
   profile: {},
   publicProfile: {},
   vaults: [],
-  keeps: []
+  keeps: [],
+  currentKeep: {}
 })
