@@ -4,7 +4,7 @@
       <button type="button" class="close text-danger" @click="deleteVault(vault)">
         <span>&times;</span>
       </button>
-      <img class="rounded" src="https://via.placeholder.com/250" alt="" @click="openVault(vault)">
+      <img class="rounded" src="https://via.placeholder.com/250" alt="" @click="openVault">
       <p>{{ vault.title }}</p>
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
     return {
       vault: computed(() => props.vaultProp),
       openVault(vault) {
-        router.push({ name: 'Vault', params: { id: vault.id } })
+        router.push({ name: 'Vault', params: { id: props.vaultProp.id } })
       },
       deleteVault(vault) {
         if (window.confirm('Are you sure you want to delete this vault?')) {

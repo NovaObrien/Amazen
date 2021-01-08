@@ -29,12 +29,12 @@ export default {
 
 <style scoped lang="scss">
 
-.home{
+.grid{
  column-count: 4;
 }
 
 @media(max-width: 600px){
-  .home{
+  .grid{
     column-count: 2;
 
   }

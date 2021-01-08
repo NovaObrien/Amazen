@@ -1,5 +1,5 @@
 <template>
-  <div class="add-to-keep-component">
+  <div class="add-to-keep-component" @click="addToVault">
     {{ vault.title }}
   </div>
 </template>

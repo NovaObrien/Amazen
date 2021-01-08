@@ -25,6 +25,17 @@ namespace amazen_server.Repositories
       ";
       return _db.ExecuteScalar<int>(sql, keep);
     }
+    internal bool Delete(int id)
+    {
+      string sql = "DELETE FROM keeps WHERE Id = @id";
+      int valid = _db.Execute(sql, new { id });
+      return valid > 0;
+    }
+    public Keep FindById(int id)
+    {
+      string sql = @"SELECT * FROM keeps WHERE id = @id";
+      return _db.QueryFirstOrDefault<Keep>(sql, new { id });
+    }
     internal IEnumerable<Keep> Find()
     {
       string sql = @"

@@ -53,6 +53,23 @@ namespace latefall2020_dotnet_bloggr.Controllers
       }
     }
 
+    [Authorize]
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<string>> Delete(int id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_ks.Delete(id, userInfo.Id));
+      }
+      catch (System.Exception e)
+      {
+
+        return BadRequest(e.Message);
+
+      }
+    }
+
     //   [HttpPut("{id}")]
     //   [Authorize]
     //   public async Task<ActionResult<Keep>> Edit(int id, [FromBody] Keep editData)

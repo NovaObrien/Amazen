@@ -40,7 +40,7 @@
                       class="close"
                       data-dismiss="modal"
                       aria-label="Close"
-                      id="keepModalClose"
+                      id="closeModal"
                     >
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -129,7 +129,10 @@ export default {
       keep: computed(() => props.keepProp),
       vaults: computed(() => AppState.vaults),
       deleteKeep(keep) {
-        keepService.deleteKeep(keep)
+        if (window.confirm('Are you sure you want to delete this vault?')) {
+          keepService.deleteKeep(keep)
+        }
+        document.getElementById('closeModal').click()
       }
     }
   },

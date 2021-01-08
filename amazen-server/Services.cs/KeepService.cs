@@ -30,9 +30,19 @@ namespace amazen_server.Services
     {
       return _repo.GetProfileKeeps(id);
     }
-    public bool Delete(int id)
+    internal string Delete(int id, string userId)
     {
-      throw new NotImplementedException();
+      Keep data = _repo.FindById(id);
+      if (data == null) { throw new Exception("Bad Id"); }
+      if (data.CreatorId != userId)
+      {
+        throw new Exception("Not user, Access Denied");
+      }
+      if (_repo.Delete(id))
+      {
+        return "deleted succesfully";
+      }
+      return "did not remove succesfully";
     }
 
     public Keep Edit(Keep t)
