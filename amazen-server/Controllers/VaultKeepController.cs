@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace amazen_server.Controllers
 {
+  [ApiController]
+  [Route("api/[controller]")]
   public class VaultKeepController : ControllerBase
   {
     private readonly VaultKeepService _vks;
@@ -17,13 +19,14 @@ namespace amazen_server.Controllers
     }
     [HttpPost("{id}")]
     [Authorize]
-    public async Task<ActionResult<VaultKeep>> Create(string id, [FromBody] VaultKeep newVaultKeep)
+    public async Task<ActionResult<VaultKeep>> Create(int id, [FromBody] VaultKeep newVaultKeep)
     {
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         newVaultKeep.CreatorId = userInfo.Id;
-        VaultKeep Created = _vks.Create(id, newVaultKeep);
+        newVaultKeep.VaultId = id;
+        VaultKeep Created = _vks.Create(newVaultKeep);
         return Ok(Created);
       }
       catch (System.Exception e)

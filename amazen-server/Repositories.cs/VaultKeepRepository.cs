@@ -12,7 +12,7 @@ namespace amazen_server.Repositories
     {
       _db = db;
     }
-    public VaultKeep Create(string vaultId, VaultKeep vaultKeep)
+    public VaultKeep Create(VaultKeep vaultKeep)
     {
       string sql = @"
       INSERT INTO vaultKeeps

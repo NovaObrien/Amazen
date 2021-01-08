@@ -36,8 +36,8 @@ namespace amazen_server.Controllers
         return BadRequest(e.Message);
       }
     }
-    [Authorize]
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<ActionResult<string>> Delete(int id)
     {
       try

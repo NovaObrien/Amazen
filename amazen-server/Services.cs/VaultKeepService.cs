@@ -7,14 +7,14 @@ namespace amazen_server.Services
   {
     private readonly VaultKeepRepository _repo;
 
-    VaultKeepService(VaultKeepRepository repo)
+    public VaultKeepService(VaultKeepRepository repo)
     {
       _repo = repo;
     }
 
-    public VaultKeep Create(string id, VaultKeep vaultKeep)
+    public VaultKeep Create(VaultKeep vaultKeep)
     {
-      return _repo.Create(id, vaultKeep);
+      return _repo.Create(vaultKeep);
     }
 
   }
