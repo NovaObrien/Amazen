@@ -149,6 +149,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.grid-item{
+  -webkit-column-break-inside: avoid;
+}
 .add-vault-btn{
   border:rgb(0, 255, 179) 6px solid;
   padding: 1em;

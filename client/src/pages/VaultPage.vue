@@ -1,6 +1,6 @@
 <template>
   <div class="vault-page grid m-1">
-    <keep-component v-for="k in keeps" :key="k.id" :keep-prop="k" />
+    <vault-keep-component v-for="k in keeps" :key="k.id" :keep-prop="k" />
   </div>
 </template>
 

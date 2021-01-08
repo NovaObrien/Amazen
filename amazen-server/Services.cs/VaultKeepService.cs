@@ -28,9 +28,9 @@ namespace amazen_server.Services
       {
         throw new Exception("Bad Id");
       }
-      if (vault.CreatorId != userId || vault.IsPrivate)
+      if (vault.CreatorId != userId && vault.IsPrivate)
       {
-        throw new Exception("Not Public you sneaky human");
+        throw new Exception("Not Public.. ask owner to make public?");
       }
       else
       {
