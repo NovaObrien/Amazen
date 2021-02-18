@@ -13,8 +13,8 @@ export default {
   name: 'VaultPage',
   setup() {
     const route = useRoute()
-    onMounted(() => {
-      vaultKeepService.getByVaultId(route.params.id)
+    onMounted(async() => {
+      await setTimeout(() => vaultKeepService.getByVaultId(route.params.id), 3000)
     })
     return {
       keeps: computed(() => AppState.keeps)

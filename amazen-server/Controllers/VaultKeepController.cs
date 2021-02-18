@@ -36,7 +36,7 @@ namespace amazen_server.Controllers
       }
     }
     [HttpGet("{vaultId}")]
-    [Authorize]
+
     public async Task<ActionResult<IEnumerable<Keep>>> Get(int vaultId)
     {
       try

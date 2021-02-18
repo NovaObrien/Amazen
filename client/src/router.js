@@ -22,11 +22,7 @@ const routes = [
       name: 'Home',
       component: loadPage('HomePage')
     },
-    {
-      path: 'vault/:id',
-      name: 'Vault',
-      component: loadPage('VaultPage')
-    },
+
     {
       path: 'profile',
       name: 'Profile',
@@ -37,6 +33,11 @@ const routes = [
     path: '/publicProfile/:id',
     name: 'PublicProfile',
     component: loadPage('PublicProfilePage')
+  },
+  {
+    path: '/vault/:id',
+    name: 'Vault',
+    component: loadPage('VaultPage')
   },
   {
     path: '/',

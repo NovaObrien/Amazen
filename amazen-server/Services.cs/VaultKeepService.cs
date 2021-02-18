@@ -41,11 +41,15 @@ namespace amazen_server.Services
     internal string Delete(int id, string userId)
     {
       VaultKeep data = _repo.FindOne(id);
-      if (data == null) { throw new Exception("Bad Id"); }
+      if (data == null)
+      {
+        throw new Exception("Bad Id");
+      }
       if (data.CreatorId != userId)
       {
         throw new Exception("Not user, Access Denied");
       }
+
       if (_repo.Delete(data.Id))
       {
         return "deleted succesfully";

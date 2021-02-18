@@ -15,19 +15,7 @@
 --   REFERENCES profiles(Id)   
 --   ON DELETE CASCADE
 -- );
--- CREATE TABLE keeps(
---   Id int NOT NULL AUTO_INCREMENT,
---   Name VARCHAR(255) not NULL,
---   Description VARCHAR(255),
---   Img VARCHAR(255) not NULL,
---   Views int DEFAULT 0,
---   KeepSaves int DEFAULT 0,
---   CreatorId VARCHAR(255) NOT NULL,
---   PRIMARY KEY (Id),
---   FOREIGN KEY (CreatorId)
---   REFERENCES profiles(Id)   
---   ON DELETE CASCADE
--- );
+-- 
 --  INSERT INTO keeps (name, Description, img, creatorId)
 --   VALUE ("First Keep", "Funny kitty I found", "https://i1.wp.com/katzenworld.co.uk/wp-content/uploads/2019/06/funny-cat.jpeg?fit=1920%2C1920&ssl=1", "6e771f2c-94e3-49b3-881b-b6ad3c35a465");
 
@@ -64,18 +52,36 @@
 
     -- SELECT * FROM profiles WHERE id = @Id
 
-    -- CREATE TABLE vaultKeeps(
-    --   Id int NOT NULL AUTO_INCREMENT,
-    --   CreatorId VARCHAR(255) NOT NULL,
-    --   VaultId int NOT NULL,
-    --   KeepId int NOT NULL,
-    --   PRIMARY KEY (Id),
-    --   FOREIGN KEY (CreatorId)
-    --     REFERENCES profiles(Id),
-    --   FOREIGN KEY (KeepId)
-    --     REFERENCES keeps(Id),
-    --   FOREIGN KEY (VaultId)
-    --     REFERENCES vaults(Id)
-    --     ON DELETE CASCADE
-    -- );
+    CREATE TABLE vaultKeeps(
+      Id int NOT NULL AUTO_INCREMENT,
+      CreatorId VARCHAR(255) NOT NULL,
+      VaultId int NOT NULL,
+      KeepId int NOT NULL,
+      PRIMARY KEY (Id),
+      FOREIGN KEY (CreatorId)
+        REFERENCES profiles(Id),
+      FOREIGN KEY (KeepId)
+        REFERENCES keeps(Id)
+          ON DELETE CASCADE,
+
+      FOREIGN KEY (VaultId)
+        REFERENCES vaults(Id)
+       ON DELETE CASCADE
+    );
+  -- DROP TABLE testvaultkeeps;
+
+
+    -- CREATE TABLE keeps(
+--   Id int NOT NULL AUTO_INCREMENT,
+--   Name VARCHAR(255) not NULL,
+--   Description VARCHAR(255),
+--   Img VARCHAR(255) not NULL,
+--   Views int DEFAULT 0,
+--   KeepSaves int DEFAULT 0,
+--   CreatorId VARCHAR(255) NOT NULL,
+--   PRIMARY KEY (Id),
+--   FOREIGN KEY (CreatorId)
+--   REFERENCES profiles(Id)   
+--   ON DELETE CASCADE
+-- );
     -- DROP TABLE vaultkeeps;
