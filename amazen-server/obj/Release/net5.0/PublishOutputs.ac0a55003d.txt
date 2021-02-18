@@ -1,4 +1,17 @@
 C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\amazen-server.exe
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\css\app.54e3b7e7.css
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\css\chunk-0badf0ae.fa5c2e88.css
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\css\chunk-0dc7c982.0518575a.css
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\css\chunk-4ea88e54.4d1188b5.css
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\css\chunk-61522f5a.3f544562.css
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\index.html
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\js\app.64cc5ce3.js
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\js\chunk-0badf0ae.e9a4a416.js
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\js\chunk-0dc7c982.45a36a1f.js
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\js\chunk-2d0ac3ff.b7b95895.js
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\js\chunk-4ea88e54.ee0cc035.js
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\js\chunk-61522f5a.3436ef09.js
+C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\wwwroot\js\chunk-vendors.0ea39508.js
 C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\appsettings.Development.json
 C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\appsettings.json
 C:\source\codeworks\final\Amazen\amazen-server\bin\Release\net5.0\publish\amazen-server.dll
