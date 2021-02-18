@@ -4,4 +4,4 @@ COPY ./bin/Release/net5.0/publish/ App/
 
 WORKDIR /App
 
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet amazen-server.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet keepr-1.dll
